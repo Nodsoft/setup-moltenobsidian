@@ -12,11 +12,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
+      # If debug: true, this will print the contents of the repository to the log.
+      - name: Print Repository Contents
+        run: |
+          echo "::debug::::group::Repository Contents"
+          ls -la
+          echo "::endgroup::"
+          
+      - name: Set permissions for action
+        run: |
+          echo "::debug::::group::Set permissions for action"
+          chmod +x action.yml setup.sh
+          echo "::endgroup::"
 
       - name: Setup MoltenObsidian CLI
         # Run from pushed branch
-        uses: Nodsoft/setup-moltenobsidian@${{ github.ref }}
-
+        uses: ./
       - name: Run MoltenObsidian CLI & Summarize
         run: |
           echo "### Summary" >> $GITHUB_STEP_SUMMARY

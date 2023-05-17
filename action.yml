@@ -18,4 +18,4 @@ runs:
 
     - name: Setup MoltenObsidian CLI
       shell: bash
-      run: setup.sh -v ${{ inputs.version }}
+      run: ./setup.sh -v ${{ inputs.version }}
