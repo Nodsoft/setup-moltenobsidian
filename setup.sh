@@ -46,7 +46,7 @@ try
 	echo "Installing MoltenObsidian..."
 	
 	command="dotnet tool install -g Nodsoft.MoltenObsidian.Tool"
-	if [ "$version" != null ]
+	if [ "$version" != "latest" ]
 	then
 		command="$command --version $version"
 	fi
