@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+﻿#!/bin/bash
 #ver=> Ubuntu 20.04*
 
 ###@ MoltenObsidian setup script
@@ -45,11 +45,14 @@ try
 	# Install MoltenObsidian
 	echo "Installing MoltenObsidian..."
 	
-	command="dotnet tool install -g MoltenObsidian.CLI"
+	command="dotnet tool install -g Nodsoft.MoltenObsidian.Tool"
 	if [ "$version" != null ]
 	then
 		command="$command --version $version"
 	fi
+	
+	# Debug
+	echo "::debug::Command: $command"
 
 	$command
 	
