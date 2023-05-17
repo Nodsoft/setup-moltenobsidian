@@ -31,8 +31,12 @@ jobs:
         uses: ./
       - name: Run MoltenObsidian CLI & Summarize
         run: |
+          export LANG=C.UTF-8
           echo "### Summary" >> $GITHUB_STEP_SUMMARY
           echo "Successfully installed MoltenObsidian CLI." >> $GITHUB_STEP_SUMMARY
-          echo "Installed Version: `$(moltenobsidian --version)`" >> $GITHUB_STEP_SUMMARY 
+          echo "Installed Version: \`$(moltenobsidian --version)\`" >> $GITHUB_STEP_SUMMARY 
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Output Help: ```$(moltenobsidian --help)```" >> $GITHUB_STEP_SUMMARY          
+          echo "### Output Help:" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`\" >> $GITHUB_STEP_SUMMARY
+          echo $(moltenobsidian --help) >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`\" >> $GITHUB_STEP_SUMMARY
