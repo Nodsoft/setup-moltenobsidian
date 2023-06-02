@@ -1,0 +1,42 @@
+﻿name: 'Setup MoltenObsidian CLI (Should be: Successful)'
+on:
+  - push
+  - workflow_dispatch
+  - pull_request
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      # If debug: true, this will print the contents of the repository to the log.
+      - name: Print Repository Contents
+        run: |
+          echo "::debug::::group::Repository Contents"
+          ls -la
+          echo "::endgroup::"
+          
+      - name: Set permissions for action
+        run: |
+          echo "::debug::::group::Set permissions for action"
+          chmod +x action.yml setup.sh
+          echo "::endgroup::"
+
+      - name: Setup MoltenObsidian CLI
+        # Run from pushed branch
+        uses: ./
+      - name: Run MoltenObsidian CLI & Summarize
+        run: |
+          export LANG=C.UTF-8
+          echo "### Summary" >> $GITHUB_STEP_SUMMARY
+          echo "Successfully installed MoltenObsidian CLI." >> $GITHUB_STEP_SUMMARY
+          echo "Installed Version: \`$(moltenobsidian --version)\`" >> $GITHUB_STEP_SUMMARY 
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Output Help:" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`\" >> $GITHUB_STEP_SUMMARY
+          echo $(moltenobsidian --help) >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`\" >> $GITHUB_STEP_SUMMARY

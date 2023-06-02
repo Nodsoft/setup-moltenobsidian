@@ -1,0 +1,21 @@
+﻿name: 'Setup MoltenObsidian CLI'
+description: 'Sets up the MoltenObsidian CLI tool for use in other actions.'
+author: 'Nodsoft Systems'
+
+inputs:
+  version:
+    description: 'The version of the CLI tool to install.'
+    required: false
+    default: 'latest'
+
+runs:
+  using: composite
+  steps:
+    - name: Setup .NET 7.0
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Setup MoltenObsidian CLI
+      shell: bash
+      run: ./setup.sh -v ${{ inputs.version }}
