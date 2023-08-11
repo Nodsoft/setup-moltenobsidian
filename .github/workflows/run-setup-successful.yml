@@ -1,4 +1,4 @@
-﻿name: 'Setup MoltenObsidian CLI (Should be: Successful)'
+name: 'Setup MoltenObsidian CLI (Should be: Successful)'
 on:
   - push
   - workflow_dispatch
@@ -37,6 +37,6 @@ jobs:
           echo "Installed Version: \`$(moltenobsidian --version)\`" >> $GITHUB_STEP_SUMMARY 
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Output Help:" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`\" >> $GITHUB_STEP_SUMMARY
-          echo $(moltenobsidian --help) >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`\" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "$(moltenobsidian --help | sed 's/\x1B[@A-Z\\\]^_]\|\x1B\[[0-9:;<=>?]*[-!"#$%&'"'"'()*+,.\/]*[][\\@A-Z^_`a-z{|}~]//g')" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
