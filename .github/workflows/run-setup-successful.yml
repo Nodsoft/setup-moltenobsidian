@@ -23,7 +23,7 @@ jobs:
       - name: Set permissions for action
         run: |
           echo "::debug::::group::Set permissions for action"
-          chmod +x action.yml setup.sh
+          chmod +x action.yml
           echo "::endgroup::"
 
       - name: Setup MoltenObsidian CLI
